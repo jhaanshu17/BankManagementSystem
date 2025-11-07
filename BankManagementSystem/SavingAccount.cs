@@ -7,7 +7,7 @@ namespace BankManagementSystem
 {
      class SavingAccount : Account
     {
-        public static int Rate=8;
+        protected static int Rate=8;
 
         public SavingAccount(string AccountHolderName, string AccountNo):base(AccountHolderName,AccountNo) 
         { 

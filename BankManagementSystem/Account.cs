@@ -8,13 +8,16 @@ namespace BankManagementSystem
 {
     internal abstract class Account
     {
-        public string  AccountNo;
-        public  string AccountHolderName;
-        public double Balance;
+        public string AccountNo { get; private set; }
+        public string AccountHolderName { get; private set; }
+        public double Balance { get; protected set; }
+
+       
+
         public Account (string AccountHolderName, string AccountNo) 
         { 
             Balance = 0;
-           this.AccountHolderName = AccountHolderName;
+            this.AccountHolderName = AccountHolderName;
             this. AccountNo=AccountNo;
 
         }

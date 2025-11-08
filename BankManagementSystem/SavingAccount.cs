@@ -49,5 +49,7 @@ namespace BankManagementSystem
             Console.WriteLine("Your Calculated Intrest: " + intrest);
             Console.WriteLine("Total Amount: " + TotalAmount);
         }
+
+       
     }
 }

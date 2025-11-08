@@ -10,6 +10,7 @@ namespace BankManagementSystem
     {
 
         public static List<Account> allAccounts = new List<Account>();
+        public static List<string> allMobiles = new List<string>();
 
         public static void AddAccount (Account account)
         {
@@ -17,6 +18,7 @@ namespace BankManagementSystem
             {
 
                 allAccounts.Add(account);
+                
             }
             else
             {
@@ -28,8 +30,9 @@ namespace BankManagementSystem
         {
             foreach (Account account in allAccounts)
             {
+                Console.WriteLine("-------------------------------------------------------");
                 account.DisplayDetails();
-                Console.WriteLine("--------------------");
+                Console.WriteLine("-------------------------------------------------------");
             }
         }
 
@@ -56,5 +59,20 @@ namespace BankManagementSystem
             return accountNumber;
 
         }
+
+        public static bool AddMobileNumber(string mobileNo)
+        {
+            if (!allMobiles.Contains(mobileNo))
+            {
+                allMobiles.Add(mobileNo);
+                return true;
+
+            }
+           return false;
+           
+           
+        }
+
+        
     }
 }

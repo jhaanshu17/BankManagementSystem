@@ -1,6 +1,9 @@
 ﻿using BankManagementSystem;
+using System.Linq.Expressions;
 string accNumber;
 Account account = null;
+string name;
+string mobileNo;
 do
 {
     Console.WriteLine("------------------Welcome to our State Bank Of India--------------");
@@ -9,7 +12,8 @@ do
     Console.WriteLine("Enter 3 For Withdraw Money");
     Console.WriteLine("Enter 4 For View Account Details");
     Console.WriteLine("Enter 5 For View All Account");
-    Console.WriteLine("Enter 6 For Exit ");
+    Console.WriteLine("Enter 6 For Calculate Intrest for Saving Accounts");
+    Console.WriteLine("Enter 7 For Exit ");
 
     Console.Write("Enter Your Options:");
     int option = Convert.ToInt32(Console.ReadLine());
@@ -26,9 +30,7 @@ do
         {
             try
             {
-                string name;
-                string mobileNo;
-               
+
 
                 while (true)
                 {
@@ -47,28 +49,41 @@ do
                 }
 
 
+
                 while (true)
                 {
                     Console.WriteLine("Enter your Mobile Number");
                     mobileNo = Console.ReadLine();
 
-                    if(mobileNo.Length == 10 && mobileNo.All(char.IsDigit)){
+                    if (mobileNo.Length == 10 && mobileNo.All(char.IsDigit))
+                    {
+                       
                         break;
                     }
                     else
                     {
                         Console.WriteLine("Enter valid Mobile Number");
                     }
-
+                    
                 }
-
+                while (true)
+                {
+                    if (Bank.AddMobileNumber(mobileNo))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("This Number already exists!");
+                        Console.WriteLine("Please enter another Number!");
+                        mobileNo = Console.ReadLine();
+                    }
+                }
                 accNumber = Bank.GenerateAccountNo(mobileNo);
                 Console.WriteLine("Your AccountNo Is:" + accNumber);
-
                 account = new SavingAccount(name, accNumber);
                 Bank.AddAccount(account);
-                Console.WriteLine("Account Succesfully Created!");
-
+                account.getMessage();
 
             }
             catch (Exception ex)
@@ -80,9 +95,6 @@ do
         {
             try
             {
-                string name;
-                string mobileNo;
-
                 while (true)
                 {
                     Console.Write("Enter Your Name: ");
@@ -102,7 +114,6 @@ do
                 {
                     Console.WriteLine("Enter your Mobile Number");
                     mobileNo = Console.ReadLine();
-
                     if (mobileNo.Length == 10 && mobileNo.All(char.IsDigit))
                     {
                         break;
@@ -114,12 +125,26 @@ do
 
                 }
 
+                while (true)
+                {
+                    if (Bank.AddMobileNumber(mobileNo))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("This Number already exists!");
+                        Console.WriteLine("Please enter another Number!");
+                        mobileNo = Console.ReadLine();
+                    }
+                }
+
                 accNumber = Bank.GenerateAccountNo(mobileNo);
                 Console.WriteLine("Your AccountNo Is:" + accNumber);
 
                 account = new CurrentAccount(name, accNumber);
                 Bank.AddAccount(account);
-                Console.WriteLine("Account Succesfully Created!");
+                account.getMessage();
             }
             catch (Exception ex)
             {
@@ -144,7 +169,8 @@ do
         {
             Console.WriteLine("Account not find");
         }
-    }else if (option == 3)
+    }
+    else if (option == 3)
     {
         Console.Write("Enter your AccountNumber");
         string accountnumber = Console.ReadLine();
@@ -175,6 +201,29 @@ do
     }else if (option == 5)
     {
         Bank.ShowAllAccount();
+    }else if (option==6)
+    {
+        try
+        {
+            Console.Write("Enter your AccountNumber");
+            string accountnumber = Console.ReadLine();
+            SavingAccount a = (SavingAccount)Bank.SeachAccontNo(accountnumber);
+            if (a != null)
+            {
+                Console.WriteLine("Enter your Period of time for: ");
+                double year = Convert.ToDouble(Console.ReadLine());
+                a.CalculateInterest(year);
+            }
+            else
+            {
+                Console.WriteLine("Account not find");
+            }
+        }
+        catch (Exception ex) 
+        {
+            Console.WriteLine("Your Account is Current! No Intrest on Current Acccount");
+        }
+       
     }
     else
     {

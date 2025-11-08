@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BankManagementSystem
 {
-    internal abstract class Account
+    internal abstract class Account : INotification
     {
         public string AccountNo { get; private set; }
         public string AccountHolderName { get; private set; }
@@ -24,6 +24,11 @@ namespace BankManagementSystem
         public abstract void Deposit (double amount);
         public abstract void Withdraw (double amount);
         public abstract void DisplayDetails ();
+
+        public void getMessage()
+        {
+            Console.WriteLine("You have Create Successfully Your Account");
+        }
       
 
     }

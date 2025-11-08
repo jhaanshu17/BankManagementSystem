@@ -30,20 +30,9 @@ namespace BankManagementSystem
         {
             Console.WriteLine("You have Create Successfully Your Account");
         }
+
+        public abstract void TransferMoney (Account recever, double Amount);
         
-        public virtual void TransferMoney(Account recever , double Amount)
-        {
-            if (recever == null) 
-            {
-                Console.WriteLine("Not avaliable Data");
-            }
-            if(Amount <= 0)
-            {
-                Console.WriteLine("Can't be negative money");
-            }
-            Balance-=Amount;
-            recever.Deposit(Amount);
-        }
 
     }
 }

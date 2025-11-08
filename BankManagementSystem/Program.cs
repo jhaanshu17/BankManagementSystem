@@ -13,7 +13,8 @@ do
     Console.WriteLine("Enter 4 For View Account Details");
     Console.WriteLine("Enter 5 For View All Account");
     Console.WriteLine("Enter 6 For Calculate Intrest for Saving Accounts");
-    Console.WriteLine("Enter 7 For Exit ");
+    Console.WriteLine("Enter 7 For Transfer Money ");
+    Console.WriteLine("Enter 8 For Exit ");
 
     Console.Write("Enter Your Options:");
     int option = Convert.ToInt32(Console.ReadLine());
@@ -224,8 +225,48 @@ do
             Console.WriteLine("Your Account is Current! No Intrest on Current Acccount");
         }
        
+    }else if (option == 7)
+    {
+        Console.Write("Enter Sender AccountNumber");
+        string SenderAccountNo = Console.ReadLine();
+       Account sender= Bank.SeachAccontNo(SenderAccountNo);
+        if (sender != null)
+        {
+            Console.Write("Enter Receiver AccountNumber: ");
+            string receiverAccountNo = Console.ReadLine();
+            Account receiver = Bank.SeachAccontNo(receiverAccountNo);
+            if (receiver != null)
+            {
+                Console.Write("Enter Your Amount:");
+                double Amount= Convert.ToDouble(Console.ReadLine());
+                if (Amount <= sender.Balance)
+                {
+                    sender.Withdraw(Amount);
+                    Console.WriteLine("------------------------------------------------");
+                    sender.DisplayDetails();
+                    Console.WriteLine("------------------------------------------------");
+                    receiver.Deposit(Amount);
+                    receiver.DisplayDetails();
+                }
+                else
+                {
+                    Console.WriteLine("Insufficient Balance");
+                }
+               
+            }
+            else
+            {
+                Console.WriteLine("Receiver Not found!");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Sender not Found!");
+        }
+
+       
     }
-    else
+    else 
     {
         break;
     }

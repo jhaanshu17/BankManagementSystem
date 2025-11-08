@@ -68,6 +68,36 @@ namespace BankManagementSystem
             Console.WriteLine($"Account type:{"Current Account"}");
         }
 
-      
+
+        public override void TransferMoney (Account receiver, double Amount)
+        {
+            if (receiver == null)
+            {
+                Console.WriteLine("Not avaliable Data");
+            }
+            if (Amount <= 0)
+            {
+                Console.WriteLine("Can't be negative money");
+            }
+            if (Amount > Balance + OverdraftLimit)
+            {
+                Console.WriteLine("Transfer failed: insufficient balance and overdraft limit.");
+                return;
+            }
+            if (Amount <= Balance)
+            {
+                Balance -= Amount;
+            }
+            else
+            {
+                double extra = Amount - Balance;
+                Balance = 0;
+                OverdraftLimit -= extra;
+            }
+            receiver.Deposit(Amount);
+
+            Console.WriteLine($"Transferred {Amount} from {AccountNo} to {receiver.AccountNo}");
+            Console.WriteLine($"Remaining balance: {Balance}, Overdraft Limit: {OverdraftLimit}");
+        }
     }
 }

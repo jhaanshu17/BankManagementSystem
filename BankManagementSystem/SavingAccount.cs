@@ -50,6 +50,20 @@ namespace BankManagementSystem
             Console.WriteLine("Total Amount: " + TotalAmount);
         }
 
-       
+
+        public override void TransferMoney (Account recever, double Amount)
+        {
+            if (recever == null)
+            {
+                Console.WriteLine("Not avaliable Data");
+            }
+            if (Amount <= 0)
+            {
+                Console.WriteLine("Can't be negative money");
+            }
+            Balance -= Amount;
+            recever.Deposit(Amount);
+        }
+
     }
 }

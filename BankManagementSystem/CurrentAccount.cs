@@ -69,7 +69,7 @@ namespace BankManagementSystem
         }
 
 
-        public override void TransferMoney (Account receiver, double Amount)
+       /* public override void TransferMoney (Account receiver, double Amount)
         {
             if (receiver == null)
             {
@@ -98,6 +98,6 @@ namespace BankManagementSystem
 
             Console.WriteLine($"Transferred {Amount} from {AccountNo} to {receiver.AccountNo}");
             Console.WriteLine($"Remaining balance: {Balance}, Overdraft Limit: {OverdraftLimit}");
-        }
+        }*/
     }
 }

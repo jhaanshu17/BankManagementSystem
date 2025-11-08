@@ -51,7 +51,7 @@ namespace BankManagementSystem
         }
 
 
-        public override void TransferMoney (Account recever, double Amount)
+        /*public override void TransferMoney (Account recever, double Amount)
         {
             if (recever == null)
             {
@@ -63,7 +63,7 @@ namespace BankManagementSystem
             }
             Balance -= Amount;
             recever.Deposit(Amount);
-        }
+        }*/
 
     }
 }

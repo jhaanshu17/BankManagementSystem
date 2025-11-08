@@ -31,7 +31,7 @@ namespace BankManagementSystem
             Console.WriteLine("You have Create Successfully Your Account");
         }
 
-        public abstract void TransferMoney (Account recever, double Amount);
+       // public abstract void TransferMoney (Account recever, double Amount);
         
 
     }
